@@ -2,10 +2,6 @@
 
 download_s3_file
 
-### Caution ###
-
-- 더 높은 version의 Python 생성 시, setting.py 의 version 교체 요망
-
 ### How to use ###
 
 - Install dependency :
