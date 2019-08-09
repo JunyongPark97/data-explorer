@@ -1,6 +1,6 @@
 # download_s3_file #
 
-data explorer
+download_s3_file
 
 ### Caution ###
 
