@@ -1,6 +1,6 @@
-# download_s3_file #
+# data-explorer #
 
-download_s3_file
+download amazon s3 file
 
 ### How to use ###
 
@@ -16,5 +16,3 @@ download_s3_file
     ...
     ```
 
-### Informations
-- 나중에 data-explorer에 합칠 예정
