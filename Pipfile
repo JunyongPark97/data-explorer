@@ -12,7 +12,11 @@ awscli = "*"
 django-storages = "*"
 boto = "*"
 django-extensions = "*"
+#mysqlclient = "*"
+jupyter = "*"
+django-jsonfield = "*"
 mysqlclient = "*"
+requests = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"
