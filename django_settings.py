@@ -39,7 +39,8 @@ DJANGO_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'web_crawler'
+    'web_crawler',
+    'data_management'
 )
 
 
@@ -92,10 +93,18 @@ DATABASES = {
         'USER': load_credential("WEB_CRAWLER_DATABASE_USERNAME",""),
         'PASSWORD': load_credential('WEB_CRAWLER_DATABASE_PASSWORD'),
     },
+    'data_management': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': 'choco-database.ckanfuynig82.ap-northeast-2.rds.amazonaws.com',
+        'NAME': 'monde_data_server',
+        'USER': load_credential("MONDE_DATA_DATABASE_USERNAME",""),
+        'PASSWORD': load_credential('MONDE_DATA_DATABASE_PASSWORD'),
+    },
 }
 
 DATABASE_ROUTERS = [
-    'web_crawler.routers.WebCrawlerRouter'
+    'web_crawler.routers.WebCrawlerRouter',
+    'data_management.routers.DataManagementRouter'
 ]
 
 # Password validation
@@ -136,3 +145,25 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+#AWS
+AWS_ACCESS_KEY_ID = load_credential("AWS_ACCESS_KEY_ID", "")
+AWS_SECRET_ACCESS_KEY = load_credential("AWS_SECRET_ACCESS_KEY", "")
+AWS_STORAGE_BUCKET_NAME = 'monde-data'
+AWS_S3_REGION_NAME = 'ap-northeast-2'
+AWS_S3_HOST = 's3.%s.amazonaws.com' % AWS_S3_REGION_NAME
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_FILE_OVERWRITE = False
+AWS_AUTO_CREATE_BUCKET=True
+AWS_DEFAULT_ACL = None
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+#static file
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_LOCATION = 'static'
+STATIC_URL = '/static/'
+MEDIA_LOCATION = 'media'
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIA_LOCATION)
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+MEDIAFILES_LOCATION = 'media'
+STATICFILES_LOCATION = 'static'

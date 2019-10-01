@@ -17,6 +17,8 @@ jupyter = "*"
 django-jsonfield = "*"
 mysqlclient = "*"
 requests = "*"
+pil = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"
