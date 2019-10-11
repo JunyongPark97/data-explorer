@@ -1,5 +1,7 @@
 # data-explorer #
 
+extract cropped 'ltrb' data
+
 download amazon s3 file
 
 ### How to install ###
@@ -18,11 +20,10 @@ download amazon s3 file
    
 ### download csv from Monde-data-server for object-detection ###
 
-```monde_data_extract.ipynb```
-
 ##### original_iamge의 image 저장 방식이 달라 다른 csv에 저장 #####
-##### 저장 형식은 left, top, bottom, origin_url, width, height , ltrb는 비율이 아닌 픽셀값 #####
+##### 저장 형식은 left, top, bottom, origin_url, width, height : ltrb는 비율이 아닌 픽셀값 #####
 
+```monde_data_extract.ipynb```
     
 1. make instance
     ```
