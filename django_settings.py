@@ -40,7 +40,9 @@ DJANGO_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'web_crawler',
-    'data_management'
+    'data_management',
+    'mondebro',
+    'monde'
 )
 
 
@@ -86,6 +88,13 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'memory',
     },
+    'monde': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': 'choco-database.ckanfuynig82.ap-northeast-2.rds.amazonaws.com',
+        'NAME': 'monde',
+        'USER': load_credential("MONDE_DATABASE_USERNAME", ""),
+        'PASSWORD': load_credential('MONDE_DATABASE_PASSWORD'),
+    },
     'web_crawler': {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': 'choco-database.ckanfuynig82.ap-northeast-2.rds.amazonaws.com',
@@ -100,11 +109,17 @@ DATABASES = {
         'USER': load_credential("MONDE_DATA_DATABASE_USERNAME",""),
         'PASSWORD': load_credential('MONDE_DATA_DATABASE_PASSWORD'),
     },
+    'mondebro': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': 'choco-database.ckanfuynig82.ap-northeast-2.rds.amazonaws.com',
+        'NAME': 'mondebro',
+        'USER': load_credential("MONDEBRO_DATABASE_USERNAME",""),
+        'PASSWORD': load_credential('MONDEBRO_DATABASE_PASSWORD'),
+    },
 }
 
 DATABASE_ROUTERS = [
-    'web_crawler.routers.WebCrawlerRouter',
-    'data_management.routers.DataManagementRouter'
+    'routers.DataExplorerRouter',
 ]
 
 # Password validation

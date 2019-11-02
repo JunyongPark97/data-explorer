@@ -94,7 +94,7 @@ class PatternTag(models.Model):
         db_table = 'category_data_patterntag'
 
 
-class Categories(models.Model):
+class ProductCategories(models.Model):
     version = models.IntegerField(null=True)
     cropped_source = models.ForeignKey(CroppedImage, on_delete=models.CASCADE, related_name='categories')
     color_source = models.ForeignKey(ColorTag, null=True, on_delete=models.CASCADE)
