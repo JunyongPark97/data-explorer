@@ -30,3 +30,25 @@ class ProductCategories(models.Model):
     class Meta:
         managed = False
         db_table = 'monde_productcategories'
+
+# product view log
+class ProductViewCount(models.Model):
+    product = models.OneToOneField(Product, related_name='view_count', on_delete=models.CASCADE)
+    view_count = models.IntegerField(default=1)
+    description = models.CharField(max_length=500)
+    
+    class Meta:
+        managed = False
+        db_table = 'logs_productviewcount'
+
+
+# product favorite log
+class ProductFavoriteCount(models.Model):
+    product = models.OneToOneField(Product, related_name='favorite_count', on_delete=models.CASCADE)
+    favorite_count = models.IntegerField(default=1)
+    description = models.CharField(max_length=500)
+    
+    class Meta:
+        managed = False
+        db_table = 'logs_productfavoritecount'
+    
