@@ -15,10 +15,10 @@ download amazon s3 file
 - Put `secret.json` file inside directory
 
     ```
-    ...
+    Ask JunyongPark
     ```
    
-### data extract to csv & download image from Monde-data-server###
+### data extract to csv & download image from Monde-data-server
 
 ##### 저장 형식은 left, top, bottom, origin_url, width, height : ltrb는 비율이 아닌 픽셀값 #####
 
