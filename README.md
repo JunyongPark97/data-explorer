@@ -30,6 +30,7 @@ download amazon s3 file
     $ imagedownloadmanager = S3DownloadManager()
     ```
 2. make queryset
+    > **queryset 은 CroppedImage 기반이어야 합니다.**
     ```
     $ queryset = CroppedImage.objects.filter(origin_source__image_review=True)
     ```
