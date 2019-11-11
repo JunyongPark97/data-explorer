@@ -46,12 +46,12 @@ class CroppedImage(models.Model):
         db_table = 'category_data_croppedimage'
 
 
-class ColorTag(models.Model):
-    color_name = models.CharField(max_length=50)
+# class ColorTag(models.Model):
+#     color_name = models.CharField(max_length=50)
 
-    class Meta:
-        managed = False
-        db_table = 'category_data_colortag'
+#     class Meta:
+#         managed = False
+#         db_table = 'category_data_colortag'
 
 
 class ShapeTag(models.Model):
@@ -62,13 +62,21 @@ class ShapeTag(models.Model):
         db_table = 'category_data_shapetag'
 
 
-class HandleTag(models.Model):
-    handle_name = models.CharField(max_length=50)
+# class HandleTag(models.Model):
+#     handle_name = models.CharField(max_length=50)
+
+#     class Meta:
+#         managed = False
+#         db_table = 'category_data_handletag'
+
+class CoverTag(models.Model):
+    cover_name = models.CharField(max_length=50)
 
     class Meta:
-        managed = False
-        db_table = 'category_data_handletag'
+        verbose_name = '[3-2] Cover Tag'
 
+    def __str__(self):
+        return self.cover_name
 
 class CharmTag(models.Model):
     charm_name = models.CharField(max_length=50)
@@ -97,10 +105,11 @@ class PatternTag(models.Model):
 class ProductCategories(models.Model):
     version = models.IntegerField(null=True)
     cropped_source = models.ForeignKey(CroppedImage, on_delete=models.CASCADE, related_name='categories')
-    color_source = models.ForeignKey(ColorTag, null=True, on_delete=models.CASCADE)
+#     color_source = models.ForeignKey(ColorTag, null=True, on_delete=models.CASCADE)
     shape_source = models.ForeignKey(ShapeTag, null=True, on_delete=models.CASCADE)
+    cover_source = models.ForeignKey(CoverTag, null=True, on_delete=models.CASCADE)
     charm_source = models.ForeignKey(CharmTag, null=True, on_delete=models.CASCADE)
-    handle_source = models.ForeignKey(HandleTag, null=True, on_delete=models.CASCADE)
+#     handle_source = models.ForeignKey(HandleTag, null=True, on_delete=models.CASCADE)
     deco_source = models.ForeignKey(DecoTag, null=True, on_delete=models.CASCADE)
     pattern_source = models.ForeignKey(PatternTag, null=True, on_delete=models.CASCADE)
 
