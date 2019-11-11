@@ -18,39 +18,36 @@ download amazon s3 file
     ...
     ```
    
-### download csv from Monde-data-server for object-detection ###
+### data extract to csv & download image from Monde-data-server###
 
-##### original_iamge의 image 저장 방식이 달라 다른 csv에 저장 #####
 ##### 저장 형식은 left, top, bottom, origin_url, width, height : ltrb는 비율이 아닌 픽셀값 #####
 
 ```monde_data_extract.ipynb```
     
 1. make instance
     ```
-    $ downloadmanager= DataExtractSave()
+    $ extractmanager= DataExtractSave()
+    $ imagedownloadmanager = S3DownloadManager()
+    ```
+2. make queryset
+    ```
+    $ queryset = CroppedImage.objects.filter(origin_source__image_review=True)
+    ```
+ 
+3. save_data_to_csv : 데이터 csv로 저장
+    > save_data_to_csv('저장할 파일이름', 쿼리셋) --> **쿼리셋은 sliced 되면 오류가 납니다.(err: queryset = Queryset[:100])**
+    > image 다운받을 때 다운받는 폴더는 미리 생성되어있어야 합니다. 
+    ```    
+    $ extractmanager.save_data_to_csv("20191106_tight_boxed_data.csv", queryset)
+    $ imagedownloadmanager.download_s3_files_from_queryset('./data/', queryset)
     ```
     
-2. save_data_from_cropped : 크로링 박싱후 저장한 데이터 csv로 저장
-    > save_data_from_cropped('저장할 파일이름', 쿼리셋 개수) --> **쿼리셋 개수는 비워두면 전체에 대해 다운로드**
-    ```
-    $ # Ex: save_data_from_cropped("crop_download_test.csv","")
-    
-    $ downloadmanager.save_data_from_cropped("crop_download_test.csv","3")
-    ```
-    
-3. save_data_from_s3_temp : s3업로드 파일 박싱후 저장한 데이터 csv로 저장
-    > save_data_from_s3_temp('저장할 파일이름', 쿼리셋 개수) --> 쿼리셋 개수는 비워두면 전체에 대해 다운로드
-    ```
-    $ # Ex: downloadmanager.save_data_from_s3_temp("s3upload_download_test.csv","")
-    
-    $ downloadmanager.save_data_from_s3_temp("s3upload_download_test.csv","3")
-    ```
 
-### download S3 images to local ###
+### download S3 images to local [DEPRECATED] ###
 
 ```download_s3_files.ipynb```
 
-##### s3에 업로드된 이미지들이 다른 bucket에 있어 두곳에서 다르게 다운받아야 함.
+##### s3에 업로드된 이미지들이 다른 bucket에 있어 두곳에서 다르게 다운받아야 함. csv와, 버킷 이름을 지정해 줘야 사용 가능합니다.
 
 
 1. make instance
@@ -71,4 +68,4 @@ download amazon s3 file
     ```
 
 ### TODO ###
-- [ ] data extract to classification
+- [ ] data extract & download from Mondebro (web-crawler bucket data)
