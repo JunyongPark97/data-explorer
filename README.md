@@ -30,19 +30,18 @@ download amazon s3 file
     $ imagedownloadmanager = S3DownloadManager()
     ```
 2. make queryset
-    > **queryset 은 CroppedImage 기반이어야 합니다.**
     ```
     $ queryset = CroppedImage.objects.filter(origin_source__image_review=True)
     ```
  
-3. save_data_to_csv : 데이터 csv로 저장
+3. save_data_to_csv & download s3 file from queryset : 데이터 csv로 저장 & queryset 기반으로 s3 image file 저장
     > save_data_to_csv('저장할 파일이름', 쿼리셋) --> **쿼리셋은 sliced 되면 오류가 납니다.(err: queryset = Queryset[:100])**
     > image 다운받을 때 다운받는 폴더는 미리 생성되어있어야 합니다. 
     ```    
     $ extractmanager.save_data_to_csv("20191106_tight_boxed_data.csv", queryset)
     $ imagedownloadmanager.download_s3_files_from_queryset('./data/', queryset)
     ```
-    
+
 
 ### download S3 images to local [DEPRECATED] ###
 
