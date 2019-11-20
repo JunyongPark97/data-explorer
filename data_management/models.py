@@ -110,7 +110,7 @@ class ProductCategories(models.Model):
     cover_source = models.ForeignKey(CoverTag, null=True, on_delete=models.CASCADE)
     charm_source = models.ForeignKey(CharmTag, null=True, on_delete=models.CASCADE)
 #     handle_source = models.ForeignKey(HandleTag, null=True, on_delete=models.CASCADE)
-    deco_source = models.ForeignKey(DecoTag, null=True, on_delete=models.CASCADE)
+#     deco_source = models.ForeignKey(DecoTag, null=True, on_delete=models.CASCADE)
     pattern_source = models.ForeignKey(PatternTag, null=True, on_delete=models.CASCADE)
 
     class Meta:
